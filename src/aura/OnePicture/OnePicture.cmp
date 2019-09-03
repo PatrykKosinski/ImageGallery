@@ -1,0 +1,26 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <aura:attribute name="url" type="String" />
+    <aura:attribute name="title" type="String"/>
+    
+    <article class="slds-card ">
+        <div class="slds-card__header slds-grid" >
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <span class="slds-icon_container slds-icon-standard-account" title="picture">
+                        <span class="slds-avatar slds-avatar--large">
+                            <a href="{!v.url}">
+                                <img src="{!v.url}"/>
+                            </a>
+                        </span>
+                    </span>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                            <span class="slds-cell-wrap">{!v.title}</span>
+                    </h2>
+                </div>
+            </header>
+        </div>
+    </article>
+</aura:component>

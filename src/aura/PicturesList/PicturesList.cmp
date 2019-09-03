@@ -1,0 +1,58 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" controller="JsonPlaceHolderController" access="global">
+    <aura:handler name="init" action="{!c.getAllPictures}" value="{!this}" />
+    <aura:attribute name="pictures" type="List"/>
+    <aura:attribute name="isFilteredData" type="Boolean"  default="false" />
+    
+    <aura:attribute name="paginationList" type="List"/>
+    <aura:attribute name="startPage" type="Integer" />
+    <aura:attribute name="endPage" type="Integer"/>
+    <aura:attribute name="totalRecords" type="Integer"/>
+    <aura:attribute name="pageSize" type="Integer" default="9"/>
+    
+    <div class="slds-box slds-theme_default">
+        <div class="slds-grid slds-wrap slds-p-bottom_medium">
+            <aura:if isTrue="true">
+            <div class="slds-grid slds-grid_verticalslds-size_1-of-7 slds-p-right_medium">
+                <lightning:buttonGroup>
+                    <lightning:button label="Previous" 
+                                      disabled="{!v.startPage == 0}"  
+                                      onclick="{!c.previous}" 
+                                      variant="brand"
+                                      iconName='utility:back'/>
+                    <lightning:button label="Next" 
+                                      disabled="{!v.endPage + 1 >= v.totalRecords}" 
+                                      onclick="{!c.next}" 
+                                      variant="brand"
+                                      iconName='utility:forward'/>
+                </lightning:buttonGroup>
+            </div>
+        </aura:if>
+            <div class="slds-col slds-size_1-of-7 slds-p-right_medium">
+                <input id="titleInput" type="text" placeholder="Type picture title" class="slds-input"/>
+            </div>
+            <div class="slds-col slds-size_1-of-7 slds-p-right_medium">
+                <lightning:button label="Filter" title="Neutral action" onclick="{! c.getfilteredPictures }" />
+            </div>
+            <div class="slds-col slds-size_2-of-7 slds-p-right_medium">
+                <lightning:button label="{!v.totalRecords + ' records found'}" title="Neutral action" onclick="{! c.getfilteredPictures }" />
+            </div>
+
+            <div class="slds-col slds-size_1-of-7">
+                <lightning:button label="SendEmail" title="Neutral action" onclick="{! c.sendEmail }"/>
+            </div>
+        </div>
+        
+        <div class="slds-grid slds-wrap">
+            <aura:iteration items="{!v.paginationList}" var="item">
+                <div class="slds-col slds-size_1-of-3 slds-p-around_xx-small" >
+                    <aura:if isTrue="{!v.isFilteredData}">
+                        <c:OnePicture url="{!item.Url__c}" title="{!item.Title__c}"/>
+                        <aura:set attribute="else">
+                            <c:OnePicture url="{!item.url}" title="{!item.title}"/>
+                        </aura:set>
+                    </aura:if> 
+                </div>
+            </aura:iteration>
+        </div>
+    </div>
+</aura:component>
