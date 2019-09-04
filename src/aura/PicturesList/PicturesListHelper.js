@@ -14,8 +14,7 @@
                 var PagList = [];
                 for ( var i=0; i< pageSize; i++ ) {
                     if ( component.get("v.pictures").length> i )
-                        console.log(response.getReturnValue()[i]);
-                    PagList.push(response.getReturnValue()[i]);    
+                        PagList.push(response.getReturnValue()[i]);    
                 }
                 component.set('v.paginationList', PagList);
             }else {
@@ -27,7 +26,6 @@
         
     },
     setFilteredImages : function(component) {
-        console.log('******');
         var action = component.get("c.getFilteredImages");
         var filter = document.getElementById('titleInput').value;
         action.setParams({  namefilter : filter  });
@@ -38,14 +36,10 @@
                 component.set("v.isFilteredData", true);
                 
                 var pageSize = component.get("v.pageSize");
-                console.log('pageSize'+pageSize);
                 component.set("v.totalRecords", component.get("v.pictures").length);
                 component.set("v.startPage", 0);                
                 component.set("v.endPage", pageSize - 1);
-                console.log('-------');
                 var PagList = [];
-                console.log('component.get("v.pictures").length'+component.get("v.pictures").length);
-                console.log('pageSize'+pageSize);
                 if(pageSize>component.get("v.pictures").length){
                     pageSize = component.get("v.pictures").length;
                     component.set("v.pageSize", pageSize);
@@ -55,8 +49,7 @@
                 }
                 for ( var i=0; i< pageSize; i++ ) {
                     if ( component.get("v.pictures").length> i )
-                        console.log(response.getReturnValue()[i]);
-                    PagList.push(response.getReturnValue()[i]);    
+                        PagList.push(response.getReturnValue()[i]);    
                 }
                 component.set('v.paginationList', PagList);
             }else{

@@ -1,5 +1,4 @@
-<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" controller="JsonPlaceHolderController" access="global">
-    <aura:handler name="init" action="{!c.getAllPictures}" value="{!this}" />
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" controller="JsonPlaceHolderController" access="global">    <aura:handler name="init" action="{!c.getAllPictures}" value="{!this}" />
     <aura:attribute name="pictures" type="List"/>
     <aura:attribute name="isFilteredData" type="Boolean"  default="false" />
     
@@ -12,21 +11,21 @@
     <div class="slds-box slds-theme_default">
         <div class="slds-grid slds-wrap slds-p-bottom_medium">
             <aura:if isTrue="true">
-            <div class="slds-grid slds-grid_verticalslds-size_1-of-7 slds-p-right_medium">
-                <lightning:buttonGroup>
-                    <lightning:button label="Previous" 
-                                      disabled="{!v.startPage == 0}"  
-                                      onclick="{!c.previous}" 
-                                      variant="brand"
-                                      iconName='utility:back'/>
-                    <lightning:button label="Next" 
-                                      disabled="{!v.endPage + 1 >= v.totalRecords}" 
-                                      onclick="{!c.next}" 
-                                      variant="brand"
-                                      iconName='utility:forward'/>
-                </lightning:buttonGroup>
-            </div>
-        </aura:if>
+                <div class="slds-grid slds-grid_verticalslds-size_1-of-7 slds-p-right_medium">
+                    <lightning:buttonGroup>
+                        <lightning:button label="Previous" 
+                                          disabled="{!v.startPage == 0}"  
+                                          onclick="{!c.previous}" 
+                                          variant="brand"
+                                          iconName='utility:back'/>
+                        <lightning:button label="Next" 
+                                          disabled="{!v.endPage + 1 >= v.totalRecords}" 
+                                          onclick="{!c.next}" 
+                                          variant="brand"
+                                          iconName='utility:forward'/>
+                    </lightning:buttonGroup>
+                </div>
+            </aura:if>
             <div class="slds-col slds-size_1-of-7 slds-p-right_medium">
                 <input id="titleInput" type="text" placeholder="Type picture title" class="slds-input"/>
             </div>
@@ -36,7 +35,7 @@
             <div class="slds-col slds-size_2-of-7 slds-p-right_medium">
                 <lightning:button label="{!v.totalRecords + ' records found'}" title="Neutral action" onclick="{! c.getfilteredPictures }" />
             </div>
-
+            
             <div class="slds-col slds-size_1-of-7">
                 <lightning:button label="SendEmail" title="Neutral action" onclick="{! c.sendEmail }"/>
             </div>

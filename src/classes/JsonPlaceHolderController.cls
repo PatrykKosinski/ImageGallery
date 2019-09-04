@@ -14,7 +14,11 @@ public with sharing class JsonPlaceHolderController {
         List<JsonImage> lessImages = new List<JsonImage>();
         
         integer i = 100;
-        while(i>0){
+        if(images.size()<i){
+            i = images.size()-1;
+        }
+
+        while(i>=0){
             lessImages.add(images.get(i));
             i--;
         }
@@ -38,15 +42,6 @@ public with sharing class JsonPlaceHolderController {
             resources.add(resource);
         }
         insert resources;
-    }
-    
-    public static void insertFile(HttpResponse httpResponse ){
-        ContentVersion conVer = new ContentVersion();
-        conVer.ContentLocation = 'S'; 
-        conVer.PathOnClient = 'myJSON.json';
-        conVer.Title = 'Images ';
-        conVer.VersionData = Blob.valueOf(httpResponse.getBody());
-        insert conVer;
     }
         
     @AuraEnabled
